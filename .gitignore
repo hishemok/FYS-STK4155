@@ -1,0 +1,2 @@
+Converting ipynb to pdf
+Example: jupyter-nbconvert --to pdfviahtml Week37/week37.ipynb
