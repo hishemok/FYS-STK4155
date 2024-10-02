@@ -5,17 +5,18 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{geometry}
-\usepackage{hyphenat}[none]
+\usepackage[none]{hyphenat}
 \usepackage{xcolor}
+\usepackage{cite}
 \usepackage{lipsum}
 \usepackage{subfigure}
 \usepackage{graphicx}
 \geometry{
  a4paper,
- left=20mm,
- right=20mm,
- bottom=20mm,
- top=20mm,
+ left=25mm,%left=20mm,
+ right=25mm,%right=20mm,
+ bottom=25mm, %bottom=20mm,
+ top=25mm,%top=20mm,
  }
 
 
@@ -48,16 +49,25 @@
 \begin{center}
   \subsection*{Abstract}  
 \end{center}
-\textcolor{red}{Abstract text here} \lipsum[5]
+\textcolor{black}{This project analyzes multiple regression techniques, including Ordinary Least Squares (OLS), Ridge, and Lasso, using Franke's function as a test case. The objective is to fit polynomial models to this two-dimensional function, evaluate model performance, and study the Bias-Variance trade-off. In addition to standard regression methods, model accuracy is assessed using resampling techniques such as bootstrap and cross-validation, focusing on the Mean Squared Error (MSE). Finally, these methods are applied to real terrain data, enabling comparison of results across various datasets and regression models. }\textcolor{red}{\textbf{[Add some results]}} 
 \bigskip
 \bigskip
-
-
 
 
 \section{Introduction}
-\lipsum[2-4]
+In the era of big data, predictive models are at the heart of decision-making across domains like finance, healthcare and climate science. One of the key techniques driving these predictions is regression analysis, which identifies relationships between variables and enables us to
+predict how changes in one factor affect others. In particular, \textit{linear regression} is one of the simplest and most widely used algorithms by data scientists to attempt to interpret, analyze and make predictions from a set of experimental data, taking advantage of the tools of linear algebra and basic statistics to determine continuous, well-behaved functions to describe the data and see the trend they follow. The aim of this report is to study Linear Regression models to find the best fit for data generated from a Franke function.
+This bivariate function is of interest, as it is a benchmark test problem for fitting functions \cite[Section 1.2.0]{Franke1979ACC}. Our goal is to understand how these techniques handle model complexity, noise, and the need for reliable metrics since the accurate estimation of terrain, for instance, is an important task in the field of geographical studies, as well as it is a fundamental factor in physical processes \cite{XIONG2022104191}, \cite{URBAZAEV2022100067}. Following this way, we aim to we extend our analysis to
+real-world terrain data in where we study  
+the best fit of topographical data corresponding to Norwegian terrain in a region close to Stavanger and Møsvatn Austfjell. This shift allows us to evaluate how well theoretical models perform on actual datasets, providing insight into the practical challenges of regression modeling.\\
 
+\noindent
+In this project, we explore multiple regression techniques—Ordinary Least Squares (OLS), Ridge, and Lasso—using Franke’s function using polynomial features. The Mean Squared Error (MSE)
+is used as the primary metric compare the results of different regression techniques and assess the model performance by analysing the hyperparameters for the Lasso and Ridge regression, the number of observations and the maximum polynomial degree. In each case was performed a 80\% - 20\% train - test splitting in order to evaluate $R^2$ score and the mean squared error (MSE). In the training phase, resampling methods such as bootstrap and $k$-fold cross-validation are employed to ensure our models generalize well, avoiding overfitting while
+maintaining stability and robustness. These methods are indispensable in modern machine learning, where ensuring the reliability of models is critical. Additionally, the bias-variance trade-off is once analysed from an statistical information theory perspective and by utilizing these resampling techniques. After rigorously testing these methods on the Franke function, we extend our analysis to terrain data. \\
+
+\noindent
+In the first chapter \textcolor{red}{(tentative)} a brief mathematical and statistical review of the performance and optimization of the models will be given, showing the necessary analytical expressions. In the second part, the numerical implementation of the algorithms and the main results are shown. In the last section, the discussion of the obtained results and the application of the real data will be given, together with the main conclusions of the work. Appendices with numerical code in Python are provided in the end of the document.
 \section{Franke function}
 \section{Linear regression}
 \section{Ridge and Lasso regression}
