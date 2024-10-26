@@ -193,7 +193,7 @@ class Regression:
     
  
     def SGD(self, batch_size, n_iterations, learning_rate=None, gamma=0.0, lmbda = 0.0,convergence_tol=1e-8, test_size=0.2,randomstate=42, Adagrad=False, 
-       RMSprop=False, Adam=False,beta_1 =0.9,beta_2=0.999, x_train=None, x_test=None, z_train=None, z_test=None):
+       RMSprop=False, Adam=False,use_autograd = False,beta_1 =0.9,beta_2=0.999, x_train=None, x_test=None, z_train=None, z_test=None):
         """
         Stochastic Gradient Descent with optional momentum and optimized learning rate.
         
@@ -206,6 +206,12 @@ class Regression:
         - gamma (float): Momentum term, should be between 0 and 1.
         - test_size (float): Proportion of data to be used as the test set.
         - randomstate (int): Random seed for train/test split.
+        - Adagrad (bool): Use Adagrad optimization.
+        - RMSprop (bool): Use RMSprop optimization.
+        - Adam (bool): Use Adam optimization.
+        - beta_1 (float): Exponential decay rate for the first moment estimates (Adam).
+        - beta_2 (float): Exponential decay rate for the second moment estimates (Adam).
+        - use_autograd (bool): Use autograd for gradient computation.
         - x_train, x_test, z_train, z_test: Optionally provided train/test data; otherwise, split from self.X and self.z.
         """
         
@@ -230,6 +236,14 @@ class Regression:
             print("Momentum term gamma must be between 0.0 and 1.0. Setting gamma to 0.")
             gamma = 0.0
 
+        if use_autograd:
+            def cost_function(beta):
+                regulazation = lmbda * (beta**2).sum()
+                res = (x_train @ beta - z_train)**2
+                mean = res.mean()
+                return mean + regulazation
+            autograd_gradient = grad(cost_function)
+
         # Initialize Adagrad, RMSprop, and Adam variables
         if Adagrad or RMSprop or Adam:
             G = np.zeros(n)
@@ -247,7 +261,10 @@ class Regression:
                 z_i = z_train[random_indices]
                 
 
-                gradient = (2/batch_size)*x_i.T @ (x_i @ beta - z_i) + lmbda * beta * 2  # Include regularization term if provided
+                if use_autograd:
+                    gradient = autograd_gradient(beta)
+                else:
+                    gradient = (2 / m) * x_i.T @ (x_i @ beta - z_i) + lmbda * beta * 2
 
                 if Adagrad:
                     G += gradient**2
