@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import KFold
 from autograd import grad
+from itertools import product
 from tqdm import trange
 import inspect
 import sys
@@ -63,18 +64,19 @@ class Regression:
         X = self.X
         z = self.z
 
-        if x_train is not None and z_train is not None and z_test is not None and x_test is not None:
-            x_train = x_train
-            z_train = z_train
-            x_test = x_test
-            z_test = z_test
-        else:
-            x_train, x_test, z_train, z_test = train_test_split(X, z, test_size=test_size, random_state=randomstate)
+        x_train, x_test, z_train, z_test = self.get_train_test_data(test_size,randomstate,x_train,x_test,z_train,z_test)
 
         beta = np.linalg.inv(x_train.T @ x_train + lmbda*np.identity(x_train.shape[1])) @ x_train.T @ z_train
 
         z_tilde = x_test @ beta
         return beta, z_tilde, z_test
+    
+    def get_train_test_data(self,test_size=0.2,randomstate=42,x_train = None,x_test = None, z_train = None, z_test = None):
+        if all(v is not None for v in [x_train,z_train,z_test,x_test]):
+            return x_train, x_test, z_train, z_test
+        else:
+            x_train, x_test, z_train, z_test = train_test_split(self.X, self.z, test_size=test_size, random_state=randomstate)
+            return x_train, x_test, z_train, z_test
     
 
 
@@ -107,15 +109,7 @@ class Regression:
         :param x_train, x_test, z_train, z_test: Optionally provided train/test data; otherwise, split from self.X and self
         """
 
-        # Use existing train/test split if provided
-        if x_train is not None and z_train is not None and z_test is not None and x_test is not None:
-            x_train = x_train
-            z_train = z_train
-            x_test = x_test
-            z_test = z_test
-        else:
-            # Otherwise, create the split
-            x_train, x_test, z_train, z_test = train_test_split(self.X, self.z, test_size=test_size, random_state=randomstate)
+        x_train, x_test, z_train, z_test = self.get_train_test_data(test_size,randomstate,x_train,x_test,z_train,z_test)
 
         # Calculate learning rate if not provided
         if learning_rate is None:
@@ -217,10 +211,7 @@ class Regression:
         
         # Load data
         X, z = self.X, self.z
-        if x_train is not None and z_train is not None and x_test is not None and z_test is not None:
-            x_train, z_train, x_test, z_test = x_train, z_train, x_test, z_test
-        else:
-            x_train, x_test, z_train, z_test = train_test_split(X, z, test_size=test_size, random_state=randomstate)
+        x_train, x_test, z_train, z_test = self.get_train_test_data(test_size,randomstate,x_train,x_test,z_train,z_test)
         
         m, n = x_train.shape
         beta = np.random.rand(n)
@@ -372,9 +363,9 @@ if __name__ == "__main__":
 
     # """Fit models"""
     poly_degree = 10
-    z_flat = z.flatten()    
+    z_flat = z.flatten() 
     reg = Regression(x,y,z_flat,poly_degree)
-    X = reg.X
+    XOLS = reg.X
     print("OLS Regression")
     beta_ols,z_tilde_ols,z_test_ols = reg.linear_regression()
     print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_ols,z_test_ols):.4f}, R²: {reg.R2(z_tilde_ols,z_test_ols):.4f}")
@@ -383,7 +374,7 @@ if __name__ == "__main__":
     poly_degree = 15
     z_flat = z.flatten()    
     reg = Regression(x,y,z_flat,poly_degree)
-    X = reg.X
+    XRidge = reg.X
     print("Ridge Regression")
     beta_ridge,z_tilde_ridge,z_test_ridge = reg.linear_regression(lmbda=0.005)
     print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_ridge,z_test_ridge):.4f}, R²: {reg.R2(z_tilde_ridge,z_test_ridge):.4f}")
@@ -392,39 +383,18 @@ if __name__ == "__main__":
     poly_degree = 8
     z_flat = z.flatten()    
     reg = Regression(x,y,z_flat,poly_degree)
-    X = reg.X
+    XGD = reg.X
     print("Gradient Descent")
     beta_gd,z_tilde_gd,z_test_gd = reg.GD(n_iterations=1000,use_autograd=True)
     print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_gd,z_test_gd):.4f}, R²: {reg.R2(z_tilde_gd,z_test_gd):.4f}")
-    # print("Gradient Descent with Adagrad")
-    # beta_gd,z_tilde_gd,z_test_gd = reg.GD(n_iterations=1000,Adagrad=True)
-    # print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_gd,z_test_gd):.4f}, R²: {reg.R2(z_tilde_gd,z_test_gd):.4f}")
-    # print("Gradient Descent with Adam")
-    # beta_gd,z_tilde_gd,z_test_gd = reg.GD(n_iterations=1000,Adam=True)
-    # print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_gd,z_test_gd):.4f}, R²: {reg.R2(z_tilde_gd,z_test_gd):.4f}")
-    # print("Gradient Descent with RMSprop")
-    # beta_gd,z_tilde_gd,z_test_gd = reg.GD(n_iterations=1000,RMSprop=True)
-    # print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_gd,z_test_gd):.4f}, R²: {reg.R2(z_tilde_gd,z_test_gd):.4f}")
 
 
     poly_degree = 15
     z_flat = z.flatten()    
     reg = Regression(x,y,z_flat,poly_degree)
-    X = reg.X
+    XSGD = reg.X
     print("Stochastic Gradient Descent")
     beta_sgd,z_tilde_sgd,z_test_sgd = reg.SGD(batch_size=25,n_iterations=1000)
-    print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_sgd,z_test_sgd):.4f}, R²: {reg.R2(z_tilde_sgd,z_test_sgd):.4f}")
-    # print("Stochastic Gradient Descent with Adagrad")
-    # beta_sgd,z_tilde_sgd,z_test_sgd = reg.SGD(batch_size=25,n_iterations=1000,Adagrad=True)
-    # print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_sgd,z_test_sgd):.4f}, R²: {reg.R2(z_tilde_sgd,z_test_sgd):.4f}")
-    # print("Stochastic Gradient Descent with Adam")
-    # beta_sgd,z_tilde_sgd,z_test_sgd = reg.SGD(batch_size=25,n_iterations=1000,Adam=True)
-    # print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_sgd,z_test_sgd):.4f}, R²: {reg.R2(z_tilde_sgd,z_test_sgd):.4f}")
-    # print("Stochastic Gradient Descent with RMSprop")
-    # beta_sgd,z_tilde_sgd,z_test_sgd = reg.SGD(batch_size=25,n_iterations=1000,RMSprop=True)
-    # print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_sgd,z_test_sgd):.4f}, R²: {reg.R2(z_tilde_sgd,z_test_sgd):.4f}")
-
-
 
     
 
@@ -432,70 +402,70 @@ if __name__ == "__main__":
 
 
 
-    # """Plot models"""
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111, projection='3d')
-    # surf = ax.plot_surface(xm, ym, z, cmap='viridis')
-    # # ax.plot_surface(xm, ym, z, cmap='viridis')
-    # ax.set_xlabel('X')
-    # ax.set_ylabel('Y')
-    # ax.set_zlabel('Z')
-    # #add colorbarz_tilde_ridge.reshape(100,100)
-    # plt.colorbar(surf)
-    # plt.title('Franke function')
-    # plt.show()
+    """Plot models"""
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    surf = ax.plot_surface(xm, ym, z, cmap='viridis')
+    # ax.plot_surface(xm, ym, z, cmap='viridis')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
+    #add colorbarz_tilde_ridge.reshape(100,100)
+    plt.colorbar(surf)
+    plt.title('Franke function')
+    plt.show()
 
-    # #3d plot of OLS
-    # z_ols = (X@beta_ols).reshape(z.shape)
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111, projection='3d')
-    # surf = ax.plot_surface(xm, ym, z_ols, cmap='viridis')
-    # ax.set_xlabel('X')
-    # ax.set_ylabel('Y')
-    # ax.set_zlabel('Z')
+    #3d plot of OLS
+    z_ols = (XOLS@beta_ols).reshape(z.shape)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    surf = ax.plot_surface(xm, ym, z_ols, cmap='viridis')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
 
-    # plt.colorbar(surf)
-    # plt.title('OLS')
-    # plt.show()
+    plt.colorbar(surf)
+    plt.title('OLS')
+    plt.show()
 
-    # #3d plot of Ridge
-    # z_ridge = (X@beta_ridge).reshape(z.shape)
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111, projection='3d')
-    # surf = ax.plot_surface(xm, ym, z_ridge, cmap='viridis')
-    # ax.set_xlabel('X')
-    # ax.set_ylabel('Y')
-    # ax.set_zlabel('Z')
+    #3d plot of Ridge
+    z_ridge = (XRidge@beta_ridge).reshape(z.shape)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    surf = ax.plot_surface(xm, ym, z_ridge, cmap='viridis')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
     
-    # plt.colorbar(surf)
-    # plt.title('Ridge')
-    # plt.show()
+    plt.colorbar(surf)
+    plt.title('Ridge')
+    plt.show()
 
-    # #3d plot of GD
-    # z_gd = (X@beta_gd).reshape(z.shape)
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111, projection='3d')
-    # surf = ax.plot_surface(xm, ym, z_gd, cmap='viridis')
-    # ax.set_xlabel('X')
-    # ax.set_ylabel('Y')
-    # ax.set_zlabel('Z')
+    #3d plot of GD
+    z_gd = (XGD@beta_gd).reshape(z.shape)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    surf = ax.plot_surface(xm, ym, z_gd, cmap='viridis')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
 
-    # plt.colorbar(surf)
-    # plt.title('GD')
-    # plt.show()
+    plt.colorbar(surf)
+    plt.title('GD')
+    plt.show()
 
-    # #3d plot of SGD
-    # z_sgd = (X@beta_sgd).reshape(z.shape)
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111, projection='3d')
-    # surf = ax.plot_surface(xm, ym, z_sgd, cmap='viridis')
-    # ax.set_xlabel('X')
-    # ax.set_ylabel('Y')
-    # ax.set_zlabel('Z')
+    #3d plot of SGD
+    z_sgd = (XSGD@beta_sgd).reshape(z.shape)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    surf = ax.plot_surface(xm, ym, z_sgd, cmap='viridis')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
 
-    # plt.colorbar(surf)
-    # plt.title('SGD')if x_train != None and z_train != None and z_test != None:
-    # plt.show()
+    plt.colorbar(surf)
+    plt.title('SGD')
+    plt.show()
 
     """Cross-validation"""
     print("\nCross-validation")
