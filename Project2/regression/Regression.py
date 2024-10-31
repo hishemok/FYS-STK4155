@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.model_selection import KFold
 from autograd import grad
 from itertools import product
-from tqdm import trange
+from tqdm import trange, tqdm
 import inspect
 import sys
 import os
@@ -141,7 +141,7 @@ class Regression:
             beta1, beta2 = beta_1, beta_2
 
         # Gradient Descent Loop
-        for t in trange(1, n_iterations + 1):
+        for t in range(1, n_iterations + 1):
             if use_autograd:
                 gradient = autograd_gradient(beta)
             else:
@@ -245,7 +245,7 @@ class Regression:
             beta1, beta2 = beta_1, beta_2
 
         # Perform SGD with momentum
-        for t in trange(1, n_iterations + 1):
+        for t in range(1, n_iterations + 1):
             for j in range(m // batch_size):
                 random_indices = np.random.randint(0, m, batch_size)
                 x_i = x_train[random_indices]
@@ -361,40 +361,54 @@ if __name__ == "__main__":
     z = franke_function(xm, ym, noise=0.0)
     z_flat = z.flatten()
 
-    # """Fit models"""
-    poly_degree = 10
-    z_flat = z.flatten() 
-    reg = Regression(x,y,z_flat,poly_degree)
-    XOLS = reg.X
-    print("OLS Regression")
-    beta_ols,z_tilde_ols,z_test_ols = reg.linear_regression()
-    print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_ols,z_test_ols):.4f}, R²: {reg.R2(z_tilde_ols,z_test_ols):.4f}")
+    # # """Fit models"""
+    # poly_degree = 10
+    # z_flat = z.flatten() 
+    # reg = Regression(x,y,z_flat,poly_degree)
+    # XOLS = reg.X
+    # print("OLS Regression")
+    # beta_ols,z_tilde_ols,z_test_ols = reg.linear_regression()
+    # print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_ols,z_test_ols):.4f}, R²: {reg.R2(z_tilde_ols,z_test_ols):.4f}")
 
 
-    poly_degree = 15
-    z_flat = z.flatten()    
-    reg = Regression(x,y,z_flat,poly_degree)
-    XRidge = reg.X
-    print("Ridge Regression")
-    beta_ridge,z_tilde_ridge,z_test_ridge = reg.linear_regression(lmbda=0.005)
-    print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_ridge,z_test_ridge):.4f}, R²: {reg.R2(z_tilde_ridge,z_test_ridge):.4f}")
+    # poly_degree = 15
+    # z_flat = z.flatten()    
+    # reg = Regression(x,y,z_flat,poly_degree)
+    # XRidge = reg.X
+    # print("Ridge Regression")
+    # beta_ridge,z_tilde_ridge,z_test_ridge = reg.linear_regression(lmbda=0.005)
+    # print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_ridge,z_test_ridge):.4f}, R²: {reg.R2(z_tilde_ridge,z_test_ridge):.4f}")
 
 
-    poly_degree = 8
+    poly_degree = 4
     z_flat = z.flatten()    
     reg = Regression(x,y,z_flat,poly_degree)
     XGD = reg.X
     print("Gradient Descent")
-    beta_gd,z_tilde_gd,z_test_gd = reg.GD(n_iterations=1000,use_autograd=True)
+    mse_values = np.zeros((11,11))
+    # for i, η in enumerate(tqdm(np.linspace(0.99,1,11))):
+    #         for j, γ in enumerate(np.linspace(0.99,1,11)):
+    #             beta_gd,z_tilde_gd,z_test_gd = reg.GD(n_iterations=100,use_autograd=True, learning_rate=η, gamma=γ) 
+    #             mse_values[i,j] = reg.MSE(z_tilde_gd,z_test_gd)
+    # print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_gd,z_test_gd):.4f}, R²: {reg.R2(z_tilde_gd,z_test_gd):.4f}")
+
+    # plt.imshow(mse_values, cmap='viridis', norm="log")
+    # plt.colorbar()
+    # plt.xlabel(r'Learning rate $\eta$')
+    # plt.ylabel(r'Momentum $\gamma$')
+    # plt.title('MSE values for Gradient Descent')
+    # plt.show()
+
+    beta_gd,z_tilde_gd,z_test_gd = reg.GD(n_iterations=100,use_autograd=True, learning_rate=None, gamma=0.9) 
     print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_gd,z_test_gd):.4f}, R²: {reg.R2(z_tilde_gd,z_test_gd):.4f}")
 
 
-    poly_degree = 15
-    z_flat = z.flatten()    
-    reg = Regression(x,y,z_flat,poly_degree)
-    XSGD = reg.X
-    print("Stochastic Gradient Descent")
-    beta_sgd,z_tilde_sgd,z_test_sgd = reg.SGD(batch_size=25,n_iterations=1000)
+    # poly_degree = 15
+    # z_flat = z.flatten()    
+    # reg = Regression(x,y,z_flat,poly_degree)
+    # XSGD = reg.X
+    # print("Stochastic Gradient Descent")
+    # beta_sgd,z_tilde_sgd,z_test_sgd = reg.SGD(batch_size=25,n_iterations=1000)
 
     
 
@@ -403,173 +417,173 @@ if __name__ == "__main__":
 
 
     """Plot models"""
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    surf = ax.plot_surface(xm, ym, z, cmap='viridis')
-    # ax.plot_surface(xm, ym, z, cmap='viridis')
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('Z')
-    #add colorbarz_tilde_ridge.reshape(100,100)
-    plt.colorbar(surf)
-    plt.title('Franke function')
-    plt.show()
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111, projection='3d')
+    # surf = ax.plot_surface(xm, ym, z, cmap='viridis')
+    # # ax.plot_surface(xm, ym, z, cmap='viridis')
+    # ax.set_xlabel('X')
+    # ax.set_ylabel('Y')
+    # ax.set_zlabel('Z')
+    # #add colorbarz_tilde_ridge.reshape(100,100)
+    # plt.colorbar(surf)
+    # plt.title('Franke function')
+    # plt.show()
 
-    #3d plot of OLS
-    z_ols = (XOLS@beta_ols).reshape(z.shape)
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    surf = ax.plot_surface(xm, ym, z_ols, cmap='viridis')
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('Z')
+    # #3d plot of OLS
+    # z_ols = (XOLS@beta_ols).reshape(z.shape)
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111, projection='3d')
+    # surf = ax.plot_surface(xm, ym, z_ols, cmap='viridis')
+    # ax.set_xlabel('X')
+    # ax.set_ylabel('Y')
+    # ax.set_zlabel('Z')
 
-    plt.colorbar(surf)
-    plt.title('OLS')
-    plt.show()
+    # plt.colorbar(surf)
+    # plt.title('OLS')
+    # plt.show()
 
-    #3d plot of Ridge
-    z_ridge = (XRidge@beta_ridge).reshape(z.shape)
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    surf = ax.plot_surface(xm, ym, z_ridge, cmap='viridis')
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('Z')
+    # #3d plot of Ridge
+    # z_ridge = (XRidge@beta_ridge).reshape(z.shape)
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111, projection='3d')
+    # surf = ax.plot_surface(xm, ym, z_ridge, cmap='viridis')
+    # ax.set_xlabel('X')
+    # ax.set_ylabel('Y')
+    # ax.set_zlabel('Z')
     
-    plt.colorbar(surf)
-    plt.title('Ridge')
-    plt.show()
+    # plt.colorbar(surf)
+    # plt.title('Ridge')
+    # plt.show()
 
-    #3d plot of GD
-    z_gd = (XGD@beta_gd).reshape(z.shape)
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    surf = ax.plot_surface(xm, ym, z_gd, cmap='viridis')
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('Z')
+    # #3d plot of GD
+    # z_gd = (XGD@beta_gd).reshape(z.shape)
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111, projection='3d')
+    # surf = ax.plot_surface(xm, ym, z_gd, cmap='viridis')
+    # ax.set_xlabel('X')
+    # ax.set_ylabel('Y')
+    # ax.set_zlabel('Z')
 
-    plt.colorbar(surf)
-    plt.title('GD')
-    plt.show()
+    # plt.colorbar(surf)
+    # plt.title('GD')
+    # plt.show()
 
-    #3d plot of SGD
-    z_sgd = (XSGD@beta_sgd).reshape(z.shape)
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    surf = ax.plot_surface(xm, ym, z_sgd, cmap='viridis')
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('Z')
+    # #3d plot of SGD
+    # z_sgd = (XSGD@beta_sgd).reshape(z.shape)
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111, projection='3d')
+    # surf = ax.plot_surface(xm, ym, z_sgd, cmap='viridis')
+    # ax.set_xlabel('X')
+    # ax.set_ylabel('Y')
+    # ax.set_zlabel('Z')
 
-    plt.colorbar(surf)
-    plt.title('SGD')
-    plt.show()
+    # plt.colorbar(surf)
+    # plt.title('SGD')
+    # plt.show()
 
-    """Cross-validation"""
-    print("\nCross-validation")
-    nfolds = 10
-    print(f"Number of folds: {nfolds}")
-
-
-    print("OLS Cross-validation")
-    poly_degree = 10
-    reg = Regression(x,y,z_flat,poly_degree)
-    X = reg.X
-    mse_scores_ols, r2_scores_ols = reg.cross_validation(nfolds, reg.linear_regression)
+    # """Cross-validation"""
+    # print("\nCross-validation")
+    # nfolds = 10
+    # print(f"Number of folds: {nfolds}")
 
 
-    print("Ridge Cross-validation")
-    poly_degree = 15
-    reg = Regression(x,y,z_flat,poly_degree)
-    X = reg.X
-    mse_scores_ridge, r2_scores_ridge = reg.cross_validation(nfolds, reg.linear_regression,lmbda = 1e-5)
+    # print("OLS Cross-validation")
+    # poly_degree = 10
+    # reg = Regression(x,y,z_flat,poly_degree)
+    # X = reg.X
+    # mse_scores_ols, r2_scores_ols = reg.cross_validation(nfolds, reg.linear_regression)
 
 
-    print("GD Cross-validation")
-    poly_degree = 8
-    reg = Regression(x,y,z_flat,poly_degree)
-    X = reg.X
-    mse_scores_gd, r2_scores_gd = reg.cross_validation(nfolds, reg.GD, n_iterations=1000,convergence_tol=1e-8)
+    # print("Ridge Cross-validation")
+    # poly_degree = 15
+    # reg = Regression(x,y,z_flat,poly_degree)
+    # X = reg.X
+    # mse_scores_ridge, r2_scores_ridge = reg.cross_validation(nfolds, reg.linear_regression,lmbda = 1e-5)
 
 
-    print("SGD Cross-validation")
-    poly_degree = 15
-    z_flat = z.flatten()    
-    reg = Regression(x,y,z_flat,poly_degree)
-    X = reg.X
-    mse_scores_sgd, r2_scores_sgd = reg.cross_validation(nfolds, reg.SGD, batch_size=100, n_iterations=1000,convergence_tol=1e-8, Adam=True) 
+    # print("GD Cross-validation")
+    # poly_degree = 8
+    # reg = Regression(x,y,z_flat,poly_degree)
+    # X = reg.X
+    # mse_scores_gd, r2_scores_gd = reg.cross_validation(nfolds, reg.GD, n_iterations=1000,convergence_tol=1e-8)
 
-    print(f"OLS: MSE = {np.mean(mse_scores_ols):.4f}, R² = {np.mean(r2_scores_ols):.4f}")
-    print(f"Ridge: MSE = {np.mean(mse_scores_ridge):.4f}, R² = {np.mean(r2_scores_ridge):.4f}")
-    print(f"GD: MSE = {np.mean(mse_scores_gd):.4f}, R² = {np.mean(r2_scores_gd):.4f}")
-    print(f"SGD: MSE = {np.mean(mse_scores_sgd):.4f}, R² = {np.mean(r2_scores_sgd):.4f}")
+
+    # print("SGD Cross-validation")
+    # poly_degree = 15
+    # z_flat = z.flatten()    
+    # reg = Regression(x,y,z_flat,poly_degree)
+    # X = reg.X
+    # mse_scores_sgd, r2_scores_sgd = reg.cross_validation(nfolds, reg.SGD, batch_size=100, n_iterations=1000,convergence_tol=1e-8, Adam=True) 
+
+    # print(f"OLS: MSE = {np.mean(mse_scores_ols):.4f}, R² = {np.mean(r2_scores_ols):.4f}")
+    # print(f"Ridge: MSE = {np.mean(mse_scores_ridge):.4f}, R² = {np.mean(r2_scores_ridge):.4f}")
+    # print(f"GD: MSE = {np.mean(mse_scores_gd):.4f}, R² = {np.mean(r2_scores_gd):.4f}")
+    # print(f"SGD: MSE = {np.mean(mse_scores_sgd):.4f}, R² = {np.mean(r2_scores_sgd):.4f}")
+
+    # # Plot MSE and R² scores
 
     # Plot MSE and R² scores
+    # fig, ax = plt.subplots(2, 2, figsize=(10, 10))
 
-    # Plot MSE and R² scores
-    fig, ax = plt.subplots(2, 2, figsize=(10, 10))
+    # # OLS Plot
+    # ax[0, 0].plot(mse_scores_ols, label='OLS MSE', color='blue')
+    # ax[0, 0].set_ylabel('MSE', color='blue')
+    # ax[0, 0].tick_params(axis='y', labelcolor='blue')
 
-    # OLS Plot
-    ax[0, 0].plot(mse_scores_ols, label='OLS MSE', color='blue')
-    ax[0, 0].set_ylabel('MSE', color='blue')
-    ax[0, 0].tick_params(axis='y', labelcolor='blue')
+    # ax_ols_r2 = ax[0, 0].twinx()  # Create a second y-axis for R²
+    # ax_ols_r2.plot(r2_scores_ols, label='OLS R²', color='orange')
+    # ax_ols_r2.set_ylabel('R²', color='orange')
+    # ax_ols_r2.tick_params(axis='y', labelcolor='orange')
 
-    ax_ols_r2 = ax[0, 0].twinx()  # Create a second y-axis for R²
-    ax_ols_r2.plot(r2_scores_ols, label='OLS R²', color='orange')
-    ax_ols_r2.set_ylabel('R²', color='orange')
-    ax_ols_r2.tick_params(axis='y', labelcolor='orange')
+    # ax[0, 0].set_xlabel('Fold')
+    # ax[0, 0].set_title('OLS MSE and R²')
+    # ax[0, 0].legend(loc='upper left')
+    # ax_ols_r2.legend(loc='upper right')
 
-    ax[0, 0].set_xlabel('Fold')
-    ax[0, 0].set_title('OLS MSE and R²')
-    ax[0, 0].legend(loc='upper left')
-    ax_ols_r2.legend(loc='upper right')
+    # # Ridge Plot
+    # ax[0, 1].plot(mse_scores_ridge, label='Ridge MSE', color='blue')
+    # ax[0, 1].set_ylabel('MSE', color='blue')
+    # ax[0, 1].tick_params(axis='y', labelcolor='blue')
 
-    # Ridge Plot
-    ax[0, 1].plot(mse_scores_ridge, label='Ridge MSE', color='blue')
-    ax[0, 1].set_ylabel('MSE', color='blue')
-    ax[0, 1].tick_params(axis='y', labelcolor='blue')
+    # ax_ridge_r2 = ax[0, 1].twinx()  # Create a second y-axis for R²
+    # ax_ridge_r2.plot(r2_scores_ridge, label='Ridge R²', color='orange')
+    # ax_ridge_r2.set_ylabel('R²', color='orange')
+    # ax_ridge_r2.tick_params(axis='y', labelcolor='orange')
 
-    ax_ridge_r2 = ax[0, 1].twinx()  # Create a second y-axis for R²
-    ax_ridge_r2.plot(r2_scores_ridge, label='Ridge R²', color='orange')
-    ax_ridge_r2.set_ylabel('R²', color='orange')
-    ax_ridge_r2.tick_params(axis='y', labelcolor='orange')
+    # ax[0, 1].set_xlabel('Fold')
+    # ax[0, 1].set_title('Ridge MSE and R²')
+    # ax[0, 1].legend(loc='upper left')
+    # ax_ridge_r2.legend(loc='upper right')
 
-    ax[0, 1].set_xlabel('Fold')
-    ax[0, 1].set_title('Ridge MSE and R²')
-    ax[0, 1].legend(loc='upper left')
-    ax_ridge_r2.legend(loc='upper right')
+    # # GD Plot
+    # ax[1, 0].plot(mse_scores_gd, label='GD MSE', color='blue')
+    # ax[1, 0].set_ylabel('MSE', color='blue')
+    # ax[1, 0].tick_params(axis='y', labelcolor='blue')
 
-    # GD Plot
-    ax[1, 0].plot(mse_scores_gd, label='GD MSE', color='blue')
-    ax[1, 0].set_ylabel('MSE', color='blue')
-    ax[1, 0].tick_params(axis='y', labelcolor='blue')
+    # ax_gd_r2 = ax[1, 0].twinx()  # Create a second y-axis for R²
+    # ax_gd_r2.plot(r2_scores_gd, label='GD R²', color='orange')
+    # ax_gd_r2.set_ylabel('R²', color='orange')
+    # ax_gd_r2.tick_params(axis='y', labelcolor='orange')
 
-    ax_gd_r2 = ax[1, 0].twinx()  # Create a second y-axis for R²
-    ax_gd_r2.plot(r2_scores_gd, label='GD R²', color='orange')
-    ax_gd_r2.set_ylabel('R²', color='orange')
-    ax_gd_r2.tick_params(axis='y', labelcolor='orange')
+    # ax[1, 0].set_xlabel('Fold')
+    # ax[1, 0].set_title('GD MSE and R²')
+    # ax[1, 0].legend(loc='upper left')
+    # ax_gd_r2.legend(loc='upper right')
 
-    ax[1, 0].set_xlabel('Fold')
-    ax[1, 0].set_title('GD MSE and R²')
-    ax[1, 0].legend(loc='upper left')
-    ax_gd_r2.legend(loc='upper right')
+    # # SGD Plot
+    # ax[1, 1].plot(mse_scores_sgd, label='SGD MSE', color='blue')
+    # ax[1, 1].set_ylabel('MSE', color='blue')
+    # ax[1, 1].tick_params(axis='y', labelcolor='blue')
 
-    # SGD Plot
-    ax[1, 1].plot(mse_scores_sgd, label='SGD MSE', color='blue')
-    ax[1, 1].set_ylabel('MSE', color='blue')
-    ax[1, 1].tick_params(axis='y', labelcolor='blue')
+    # ax_sgd_r2 = ax[1, 1].twinx()  # Create a second y-axis for R²
+    # ax_sgd_r2.plot(r2_scores_sgd, label='SGD R²', color='orange')
+    # ax_sgd_r2.set_ylabel('R²', color='orange')
+    # ax_sgd_r2.tick_params(axis='y', labelcolor='orange')
 
-    ax_sgd_r2 = ax[1, 1].twinx()  # Create a second y-axis for R²
-    ax_sgd_r2.plot(r2_scores_sgd, label='SGD R²', color='orange')
-    ax_sgd_r2.set_ylabel('R²', color='orange')
-    ax_sgd_r2.tick_params(axis='y', labelcolor='orange')
+    # ax[1, 1].set_xlabel('Fold')
+    # ax[1, 1].set_title('SGD MSE and R²')
+    # ax[1, 1].legend(loc='upper left')
+    # ax_sgd_r2.legend(loc='upper right')
 
-    ax[1, 1].set_xlabel('Fold')
-    ax[1, 1].set_title('SGD MSE and R²')
-    ax[1, 1].legend(loc='upper left')
-    ax_sgd_r2.legend(loc='upper right')
-
-    plt.tight_layout()  # Adjust layout to prevent overlap
-    plt.show()
+    # plt.tight_layout()  # Adjust layout to prevent overlap
+    # plt.show()

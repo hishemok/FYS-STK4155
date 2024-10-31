@@ -39,29 +39,54 @@ def MSE_derivative(pred, targets):
 def R2(pred, targets):    
     return 1 - np.sum((targets - pred) ** 2) / np.sum((targets - np.mean(targets)) ** 2)
 
+def softmax(z):
+    """Compute softmax values for each set of scores in the rows of the matrix z.
+    Used with batched input data."""
+    e_z = np.exp(z - np.max(z, axis=0))
+    return e_z / np.sum(e_z, axis=1)[:, np.newaxis]
+
 
 class NeuralNetwork:
     def __init__(self, input_size, hidden_sizes, output_size, hidden_layer_activation_function = sigmoid, activation_der = sigmoid_derivative,output_layer_activation_functions = lambda x: x,cost_function = MSE, cost_der = MSE_derivative):
         self.layers = []
         self.activation_funcs = []
         self.losses = []
-        self.activation_der = activation_der
+        self.activation_der =[]#activation_der
         self.cost_function = cost_function
         self.cost_der = cost_der
 
+
+        self.input_size = input_size
+        self.hidden_sizes = hidden_sizes
+        self.output_size = output_size
+        self.activation_derivative = activation_der
+        self.hidden_layer_activation_function = hidden_layer_activation_function
+        self.output_layer_activation_functions = output_layer_activation_functions
+
+        self.initialize_layers()
+
+    def initialize_layers(self):
         # Create the layers
-        layer_sizes = [input_size] + hidden_sizes + [output_size]
+        layer_sizes = [self.input_size] + self.hidden_sizes + [self.output_size]
         for i in range(len(layer_sizes) - 1):
             W = np.random.randn(layer_sizes[i], layer_sizes[i + 1])# * 0.01
             b = np.zeros((1, layer_sizes[i + 1]))
             self.layers.append((W, b))
 
             if i < len(layer_sizes) - 2:  # Use ReLU for hidden layers
-                self.activation_funcs.append(hidden_layer_activation_function)
+                if  isinstance(self.hidden_layer_activation_function, list):
+                    self.activation_funcs.append(self.hidden_layer_activation_function[i])
+                    self.activation_der = self.activation_derivative[i]
+                    
+                else:
+                    self.activation_funcs.append(self.hidden_layer_activation_function)
+                    self.activation_der = self.activation_derivative
+                    
             else:  # Linear for output layer
-                self.activation_funcs.append(output_layer_activation_functions)  #
+                self.activation_funcs.append(self.output_layer_activation_functions)  #
 
-
+    def reset_weights(self):
+        self.initialize_layers()
 
     def forward(self, inputs):
         a = inputs
@@ -103,6 +128,7 @@ class NeuralNetwork:
     def update_weights(self, gradients, learning_rate):
         for i in range(len(self.layers)):
             W, b = self.layers[i]
+            gradients = [(g[0].astype(np.float64), g[1].astype(np.float64)) for g in gradients]
             W -= learning_rate * gradients[i][0]
             b -= learning_rate * gradients[i][1]
             self.layers[i] = (W, b)

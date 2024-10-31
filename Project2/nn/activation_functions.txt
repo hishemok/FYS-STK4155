@@ -1,0 +1,11 @@
+Results of the activation functions
+Batch_size: 32. n_epochs: 2000. HiddenLayers: [50,35]
+Sigmoid Activation Function
+Mean Squared Error: 0.003904690071298822
+R² Score: 0.9960953099287012
+ReLU Activation Function
+Mean Squared Error: 0.0024863456327452634
+R² Score: 0.9975136543672547
+Leaky ReLU Activation Function
+Mean Squared Error: 0.002707744931283915
+R² Score: 0.9972922550687161

@@ -1,0 +1,14 @@
+GD and SGD no optimization, no parameter tuning. Batches for SGD = 25, n_iter=1000 for both
+Learning: rates [0.0001, 0.001, 0.01, 0.1, 1]
+MSE values for GD and SGD for different learning rates:
+[[1.32775485e+01 1.12131877e+01]
+ [3.96147795e-01 5.82339900e-01]
+ [2.95812351e-02 2.15910378e-02]
+ [1.56914461e-02 1.61531172e-02]
+ [           nan 9.43233935e-03]]
+R2 values for GD and SGD for different learning rates:
+[[-0.53889387 -0.60774039]
+ [-1.04862313 -1.22798626]
+ [ 0.55475937  0.67130879]
+ [ 0.75719843  0.75159452]
+ [        nan  0.87126738]]

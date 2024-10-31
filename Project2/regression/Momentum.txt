@@ -1,0 +1,12 @@
+GD and SGD no optimization, no parameter tuning. Batches for SGD = 25, n_iter=1000 for both
+Momentums: [0.0, 0.5, 0.9, 0.99]
+MSE values for GD and SGD for different momentums:
+[[0.01451187 0.01434719]
+ [0.01223198 0.01187224]
+ [0.00785465 0.0081795 ]
+ [0.00729204 0.00469877]]
+R2 values for GD and SGD for different momentums:
+[[0.78977443 0.78771797]
+ [0.82833997 0.83377028]
+ [0.89417018 0.8886302 ]
+ [0.8997375  0.93929893]]
