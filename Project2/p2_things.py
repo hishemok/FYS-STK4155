@@ -1,6 +1,7 @@
 import scipy.special
 import autograd.numpy as np
-from sklearn.metrics import mean_squared_error,  r2_score
+from sklearn.metrics import mean_squared_error,  r2_score, accuracy_score
+
 
 
 # functions from project 1
@@ -80,7 +81,9 @@ def softmax_vec(z):
 
 def cross_entropy(predict, target):
     return np.sum(-target * np.log(predict))
-
+def cross_entropy_der(predict, target):
+    return -target / predict
+    
 def cost_batch(layers, input, activation_funcs, target): # changed wrt mse and not mse_batch
     predict = feed_forward_batch(input, layers, activation_funcs)
     return mse(predict, target)
@@ -90,6 +93,12 @@ def mse(predict, target):
 
 def mse_der(predict, target):
     return 2/len(predict)*(predict - target)
+
+def accuracy(predictions, targets):
+    one_hot_predictions = np.zeros(predictions.shape)
+    for i, prediction in enumerate(predictions):
+        one_hot_predictions[i, np.argmax(prediction)] = 1
+    return accuracy_score(one_hot_predictions, targets)
 
 # FFNN for batched
 def create_layers_FFNN(network_input_size, layer_output_sizes):
