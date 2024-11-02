@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score
 np.random.seed(0)
 from sklearn.preprocessing import StandardScaler
-
+from sklearn.model_selection import train_test_split
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -49,7 +49,6 @@ def softmax(z):
 class NeuralNetwork:
     def __init__(self, input_size, hidden_sizes, output_size, hidden_layer_activation_function = sigmoid, activation_der = sigmoid_derivative,output_layer_activation_functions = lambda x: x,cost_function = MSE, cost_der = MSE_derivative):
         self.layers = []
-        self.activation_funcs = []
         self.losses = []
         self.activation_der =[]#activation_der
         self.cost_function = cost_function
@@ -66,6 +65,8 @@ class NeuralNetwork:
         self.initialize_layers()
 
     def initialize_layers(self):
+        self.activation_funcs = []
+
         # Create the layers
         layer_sizes = [self.input_size] + self.hidden_sizes + [self.output_size]
         for i in range(len(layer_sizes) - 1):
@@ -75,18 +76,24 @@ class NeuralNetwork:
 
             if i < len(layer_sizes) - 2:  # Use ReLU for hidden layers
                 if  isinstance(self.hidden_layer_activation_function, list):
-                    self.activation_funcs.append(self.hidden_layer_activation_function[i])
-                    self.activation_der = self.activation_derivative[i]
-                    
+                    try:
+                        self.activation_funcs.append(self.hidden_layer_activation_function[i])
+                        self.activation_der = self.activation_derivative[i]
+                    except:
+                        self.activation_funcs.append(self.hidden_layer_activation_function[-1])
+                        self.activation_der = self.activation_derivative[-1]
+                        print(f"Activation function not found, using: {self.hidden_layer_activation_function[-1].__name__} for layer {i}")
+
                 else:
                     self.activation_funcs.append(self.hidden_layer_activation_function)
                     self.activation_der = self.activation_derivative
                     
             else:  # Linear for output layer
                 self.activation_funcs.append(self.output_layer_activation_functions)  #
-
+        print(f"Function Names: {[func.__name__ for func in self.activation_funcs]}")
     def reset_weights(self):
         self.initialize_layers()
+        print("Weights reset")
 
     def forward(self, inputs):
         a = inputs
@@ -157,7 +164,7 @@ class NeuralNetwork:
             self.losses.append(loss)
 
             if epoch % 100 == 0:
-                print(f'Epoch {epoch}, Loss: {loss}')
+                print(f'Epoch {epoch: >4}, Loss: {loss: .2e}')
 
 
 
@@ -166,8 +173,8 @@ class NeuralNetwork:
 
 
 if __name__ == "__main__":
-    x = np.linspace(0,1,100)#np.random.rand(10000, 1)#
-    y = np.linspace(0,1,100)#
+    x = np.linspace(0, 1, 100)
+    y = np.linspace(0, 1, 100)
     x,y = np.meshgrid(x,y)
     x = x.flatten().reshape(-1,1)
     y = y.flatten().reshape(-1,1)
@@ -177,17 +184,18 @@ if __name__ == "__main__":
     # Normalize inputs
     scaler_x = StandardScaler()
     scaler_y = StandardScaler()
-    X_scaled = scaler_x.fit_transform(x)
-    Y_scaled = scaler_y.fit_transform(y)
+    x_scaled = scaler_x.fit_transform(x)
+    y_scaled = scaler_y.fit_transform(y)
 
     # Prepare inputs for the neural network
-    inputs = np.hstack((X_scaled, Y_scaled))
+    inputs = np.hstack((x_scaled, y_scaled))
     z = (z - np.mean(z)) / np.std(z)  # Standardize target
     # inputs = np.hstack((x,y))
     print(inputs.shape,z.shape)
 
+    X_train, X_test, z_train, z_test = train_test_split(inputs, z, test_size=0.2, random_state=42)
     nn = NeuralNetwork(input_size=2, hidden_sizes=[50, 25], output_size=1)
-    nn.train(inputs, z.reshape(-1, 1), n_epochs=2000, learning_rate=0.001, batch_size=32) 
+    nn.train(X_train, z_train.reshape(-1, 1), n_epochs=1000, learning_rate=0.001, batch_size=32) 
 
     preds = nn.forward(inputs)  
     mse = MSE(preds, z)
@@ -195,8 +203,6 @@ if __name__ == "__main__":
 
     print(f'Mean Squared Error: {mse}')
     print(f'R² Score: {r2}')
-
-    print(x.shape,y.shape,z.shape,preds.shape)
 
 
     # Plot MSE scores vs epochs

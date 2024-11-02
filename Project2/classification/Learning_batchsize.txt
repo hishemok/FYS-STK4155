@@ -1,0 +1,112 @@
+Hidden sizes: [10, 5]
+Learning Rate: 0.001
+Batch Size: 32
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.001
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.001
+Batch Size: 128
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 93.8596%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.001
+Batch Size: 256
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 84.2105%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.01
+Batch Size: 32
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.01
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.01
+Batch Size: 128
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.01
+Batch Size: 256
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 32
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 128
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 256
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 1
+Batch Size: 32
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 1
+Batch Size: 128
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 1
+Batch Size: 256
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Accuracy: 97.3684%
+

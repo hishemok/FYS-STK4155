@@ -1,0 +1,2054 @@
+#### BEST paramters:
+Best Parameters: {'hidden_size': [10, 5], 'learning_rate': 0.1, 'batch_size': 64, 'hidden_funcs': ['softmax', 'ReLU'], 'hidden_derivs': ['<lambda>', 'ReLU_derivative'], 'output_func': 'ReLU', 'cost_func': 'binary_cross_entropy', 'cost_derivative': 'MSE_derivative', 'accuracy': 
+0.9912280701754386}
+
+
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 95.6140%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 37.7193%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 94.7368%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 37.7193%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 93.8596%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 92.9825%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 37.7193%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 95.6140%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 95.6140%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 94.7368%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 95.6140%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 64.9123%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 78.0702%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 95.6140%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'sigmoid']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 92.9825%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'softmax']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 37.7193%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 84.2105%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: MSE_derivative
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 37.7193%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 94.7368%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 95.6140%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 94.7368%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 37.7193%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 95.6140%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 95.6140%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'sigmoid']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 83.3333%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'softmax']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 37.7193%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 53.5088%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'leaky_ReLU']
+Cost function: MSE
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 60.5263%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 94.7368%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 37.7193%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 95.6140%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 94.7368%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 94.7368%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 90.3509%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 93.8596%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 37.7193%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 92.1053%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 37.7193%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 92.9825%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 94.7368%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 99.1228%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 70.1754%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 85.9649%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 86.8421%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 48.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 84.2105%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 37.7193%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 85.0877%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: MSE_derivative
+Accuracy: 77.1930%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 37.7193%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'sigmoid', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 95.6140%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'softmax', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 94.7368%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'sigmoid', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 94.7368%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['ReLU', 'softmax', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'softmax', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'sigmoid', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 98.2456%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'softmax', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['leaky_ReLU', 'ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 97.3684%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 37.7193%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 96.4912%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['sigmoid', 'leaky_ReLU', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'sigmoid']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 89.4737%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'softmax']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 37.7193%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 62.2807%
+
+Hidden sizes: [10, 5]
+Learning Rate: 0.1
+Batch Size: 64
+Function Names: ['softmax', 'sigmoid', 'leaky_ReLU']
+Cost function: binary_cross_entropy
+Cost derivative: binary_cross_entropy_derivative
+Accuracy: 92.1053%
+
