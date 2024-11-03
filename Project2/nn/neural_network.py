@@ -47,12 +47,13 @@ def softmax(z):
 
 
 class NeuralNetwork:
-    def __init__(self, input_size, hidden_sizes, output_size, hidden_layer_activation_function = sigmoid, activation_der = sigmoid_derivative,output_layer_activation_functions = lambda x: x,cost_function = MSE, cost_der = MSE_derivative):
+    def __init__(self, input_size, hidden_sizes, output_size, hidden_layer_activation_function = sigmoid, activation_der = sigmoid_derivative,output_layer_activation_functions = lambda x: x,cost_function = MSE, cost_der = MSE_derivative, lmda = 0):
         self.layers = []
         self.losses = []
         self.activation_der =[]#activation_der
         self.cost_function = cost_function
         self.cost_der = cost_der
+        self.lmda = lmda
 
 
         self.input_size = input_size
@@ -136,8 +137,8 @@ class NeuralNetwork:
         for i in range(len(self.layers)):
             W, b = self.layers[i]
             gradients = [(g[0].astype(np.float64), g[1].astype(np.float64)) for g in gradients]
-            W -= learning_rate * gradients[i][0]
-            b -= learning_rate * gradients[i][1]
+            W -= learning_rate * gradients[i][0] + self.lmda * gradients[i][0]
+            b -= learning_rate * gradients[i][1] + self.lmda * gradients[i][1]
             self.layers[i] = (W, b)
 
     def train(self, inputs, targets, n_epochs, learning_rate, batch_size):
@@ -193,16 +194,19 @@ if __name__ == "__main__":
     # inputs = np.hstack((x,y))
     print(inputs.shape,z.shape)
 
-    X_train, X_test, z_train, z_test = train_test_split(inputs, z, test_size=0.2, random_state=42)
-    nn = NeuralNetwork(input_size=2, hidden_sizes=[50, 25], output_size=1)
+    X_train, X_test, z_train, z_test = train_test_split(inputs, z, test_size=0.4, random_state=42)
+    nn = NeuralNetwork(input_size=2, hidden_sizes=[50,25], output_size=1)
     nn.train(X_train, z_train.reshape(-1, 1), n_epochs=1000, learning_rate=0.001, batch_size=32) 
 
     preds = nn.forward(inputs)  
     mse = MSE(preds, z)
     r2 = R2(preds, z)
 
+    r2test = R2(nn.forward(X_test),z_test)
+
     print(f'Mean Squared Error: {mse}')
-    print(f'R² Score: {r2}')
+    print(f'R² Score: {r2: .3%}')
+    print(f"R² Test Score: {r2test: .3%}")
 
 
     # Plot MSE scores vs epochs

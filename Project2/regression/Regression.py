@@ -16,7 +16,7 @@ from data.frankefunction import franke_function
 
 
 class Regression:
-    def __init__(self,x,y,z,poly_degree):
+    def __init__(self,x=0,y=0,z=0,poly_degree=0,dmatrix = None):
         """
         Initialize the regression model
         :param x: x-values, must be either a 1D array
@@ -24,14 +24,19 @@ class Regression:
         :param z: z-values, must be a 1D array
         :param poly_degree: polynomial degree
         """
-
-
-        self.x = x
-        self.y = y
-        self.z = z
-        self.poly_degree = poly_degree
-        self.X = self.design_matrix()
-
+        if dmatrix is not None:
+            self.X = dmatrix
+            self.z = z
+        elif dmatrix is None:
+            self.x = x
+            self.y = y
+            self.z = z
+            self.poly_degree = poly_degree
+            self.X = self.design_matrix()
+        
+        elif x==0 and y == 0 and dmatrix is  None:
+            raise ValueError("No data provided. Either provide x, y and polynomial degree, or the input matrix")
+        np.random.seed(0)
     def design_matrix(self):
         """
         Create the design matrix with a given polynomial degree
