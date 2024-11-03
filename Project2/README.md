@@ -1,9 +1,9 @@
-###Project 2
+## Project 2
 
 Description:
 Regression and neural network analysis. Modelling Franke function and thereafter finding out how to apply these machine learning programs to predict cancer probability, from a dataset: https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data
 
-###Folders:
+### Folders:
 Classification:
 Classification.py:
     - Apply Neural Network to cancer data, and finding optimal parameters
