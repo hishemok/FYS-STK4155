@@ -1,10 +1,10 @@
-###Project 2
+## Project 2
 
-Description:
+#### Description:
 Regression and neural network analysis. Modelling Franke function and thereafter finding out how to apply these machine learning programs to predict cancer probability, from a dataset: https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data
 
-###Folders:
-Classification:
+### Folders:
+#### Classification:
 Classification.py:
     - Apply Neural Network to cancer data, and finding optimal parameters
 classification_regression.py
@@ -20,7 +20,7 @@ Hidden_sizes.txt
 Learning_batchsize.txt:
     -Finding optimal learningrate with fixed parameters
 
-Data:
+#### Data:
 dataloader.py
     -Read cancer data and store as pd dataframe
 frankefunction.py
@@ -28,7 +28,7 @@ frankefunction.py
 data.csv
     -Stored cancer data from dataloader.py
 
-nn:
+#### nn:
 neural_network.py
     -The neural Network Class
 nn_analysis.py
@@ -38,10 +38,10 @@ test.py
 activation_functions.txt
     -Results from nn_analysis.py
 
-Plots:
+#### Plots:
 Saved plots from different analysis
 
-Regression:
+#### Regression:
 Regression.py
     -Regression classs. Containing OLS, Ridge, Gradient Descent, Stochastich Gradient Descent, and some more less exciting stuff
 regression_analysis.py
