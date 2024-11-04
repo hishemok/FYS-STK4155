@@ -7,6 +7,7 @@ Regression and neural network analysis. Modelling Franke function and thereafter
 #### Classification:
 Classification.py:
     - Apply Neural Network to cancer data, and finding optimal parameters
+    
 classification_regression.py
     - Apply SGD to cancer data, and finding optimal parameters
 best_results_comparison.py
