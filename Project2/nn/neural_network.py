@@ -233,26 +233,48 @@ if __name__ == "__main__":
     yy = y_sorted.reshape((grid_size, grid_size))
     zz = z_sorted.reshape((grid_size, grid_size))
     preds_reshaped = preds_sorted.reshape((grid_size, grid_size))
+    
 
-    # Plotting
-    fig = plt.figure(figsize=(12, 5))
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
 
-    # Franke function plot
-    ax = fig.add_subplot(121, projection='3d')
-    ax.plot_surface(xx, yy, zz, cmap='viridis', edgecolor='none')
-    ax.set_title("Franke Function")
+    # Plotting the surface
+    surf = ax.plot_surface(xx, yy, preds_reshaped, cmap='viridis', edgecolor='none')
+
+    # Add color bar which maps values to colors
+
+
+    # Set titles and labels
+    ax.set_title("Neural Network Approximation")
     ax.set_xlabel("x")
     ax.set_ylabel("y")
-    ax.set_zlabel("z")
+    ax.set_zlabel("Predictions")
 
-    # Neural network approximation plot
-    ax2 = fig.add_subplot(122, projection='3d')
-    ax2.plot_surface(xx, yy, preds_reshaped, cmap='viridis', edgecolor='none')
-    ax2.set_title("Neural Network Approximation")
-    ax2.set_xlabel("x")
-    ax2.set_ylabel("y")
-    ax2.set_zlabel("preds")
+    # Save the figure
+    plt.savefig(f"nn_approximation_mse:{mse:.4f}_r2{r2test:.4f}.png")
 
-    plt.tight_layout()
+    # Show the plot
     plt.show()
+
+    # Plotting
+    # fig = plt.figure(figsize=(12, 5))
+
+    # # Franke function plot
+    # ax = fig.add_subplot(121, projection='3d')
+    # ax.plot_surface(xx, yy, zz, cmap='viridis', edgecolor='none')
+    # ax.set_title("Franke Function")
+    # ax.set_xlabel("x")
+    # ax.set_ylabel("y")
+    # ax.set_zlabel("z")
+
+    # # Neural network approximation plot
+    # ax2 = fig.add_subplot(122, projection='3d')
+    # ax2.plot_surface(xx, yy, preds_reshaped, cmap='viridis', edgecolor='none')
+    # ax2.set_title("Neural Network Approximation")
+    # ax2.set_xlabel("x")
+    # ax2.set_ylabel("y")
+    # ax2.set_zlabel("preds")
+
+    # plt.tight_layout()
+    # plt.show()
         
