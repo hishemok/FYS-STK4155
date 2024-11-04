@@ -250,7 +250,7 @@ class Regression:
             beta1, beta2 = beta_1, beta_2
 
         # Perform SGD with momentum
-        for t in range(1, n_iterations + 1):
+        for t in trange(1, n_iterations + 1):
             for j in range(m // batch_size):
                 random_indices = np.random.randint(0, m, batch_size)
                 x_i = x_train[random_indices]
@@ -385,12 +385,10 @@ if __name__ == "__main__":
     # print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_ridge,z_test_ridge):.4f}, R²: {reg.R2(z_tilde_ridge,z_test_ridge):.4f}")
 
 
-    poly_degree = 4
+    poly_degree = 15
     z_flat = z.flatten()    
     reg = Regression(x,y,z_flat,poly_degree)
     XGD = reg.X
-    print("Gradient Descent")
-    mse_values = np.zeros((11,11))
     # for i, η in enumerate(tqdm(np.linspace(0.99,1,11))):
     #         for j, γ in enumerate(np.linspace(0.99,1,11)):
     #             beta_gd,z_tilde_gd,z_test_gd = reg.GD(n_iterations=100,use_autograd=True, learning_rate=η, gamma=γ) 
@@ -404,16 +402,18 @@ if __name__ == "__main__":
     # plt.title('MSE values for Gradient Descent')
     # plt.show()
 
-    beta_gd,z_tilde_gd,z_test_gd = reg.GD(n_iterations=100,use_autograd=True, learning_rate=None, gamma=0.9) 
+    beta_gd,z_tilde_gd,z_test_gd = reg.GD(n_iterations=100,use_autograd=True, learning_rate=None,gamma=0.9) 
     print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_gd,z_test_gd):.4f}, R²: {reg.R2(z_tilde_gd,z_test_gd):.4f}")
 
 
-    # poly_degree = 15
-    # z_flat = z.flatten()    
-    # reg = Regression(x,y,z_flat,poly_degree)
-    # XSGD = reg.X
-    # print("Stochastic Gradient Descent")
-    # beta_sgd,z_tilde_sgd,z_test_sgd = reg.SGD(batch_size=25,n_iterations=1000)
+    poly_degree = 15
+    z_flat = z.flatten()    
+    reg = Regression(x,y,z_flat,poly_degree)
+    XSGD = reg.X
+    print("Stochastic Gradient Descent")
+    beta_sgd,z_tilde_sgd,z_test_sgd = reg.SGD(batch_size=25,n_iterations=1000,gamma=0.9)
+    print(f"Degree: {poly_degree}, MSE: {reg.MSE(z_tilde_sgd,z_test_sgd):.4f}, R²: {reg.R2(z_tilde_sgd,z_test_sgd):.4f}")
+
 
     
 
@@ -460,31 +460,32 @@ if __name__ == "__main__":
     # plt.title('Ridge')
     # plt.show()
 
-    # #3d plot of GD
-    # z_gd = (XGD@beta_gd).reshape(z.shape)
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111, projection='3d')
-    # surf = ax.plot_surface(xm, ym, z_gd, cmap='viridis')
-    # ax.set_xlabel('X')
-    # ax.set_ylabel('Y')
-    # ax.set_zlabel('Z')
+    #3d plot of GD
+    z_gd = (XGD@beta_gd).reshape(z.shape)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    surf = ax.plot_surface(xm, ym, z_gd, cmap='viridis')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
 
     # plt.colorbar(surf)
-    # plt.title('GD')
-    # plt.show()
+    plt.title('GD')
+    plt.show()
 
-    # #3d plot of SGD
-    # z_sgd = (XSGD@beta_sgd).reshape(z.shape)
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111, projection='3d')
-    # surf = ax.plot_surface(xm, ym, z_sgd, cmap='viridis')
-    # ax.set_xlabel('X')
-    # ax.set_ylabel('Y')
-    # ax.set_zlabel('Z')
+    #3d plot of SGD
+    z_sgd = (XSGD@beta_sgd).reshape(z.shape)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    surf = ax.plot_surface(xm, ym, z_sgd, cmap='viridis')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
 
     # plt.colorbar(surf)
-    # plt.title('SGD')
-    # plt.show()
+    plt.title('SGD approximation')
+    plt.savefig(f"SGD_approximation_mse:_{reg.MSE(z_tilde_sgd,z_test_sgd):.4f}_r2:_{reg.R2(z_tilde_sgd,z_test_sgd):.4f}.png")
+    plt.show()
 
     # """Cross-validation"""
     # print("\nCross-validation")
