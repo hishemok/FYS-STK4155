@@ -52,7 +52,6 @@ for epoch in range(epochs):
     model.train()
     train_loss, train_correct = 0, 0
 
-    # Use tqdm to show a progress bar for the training set
     with tqdm(train_set, desc=f"Epoch {epoch+1}/{epochs}", unit="batch") as tepoch:
         for images, labels in tepoch:
             images, labels = images.to(device), labels.to(device)

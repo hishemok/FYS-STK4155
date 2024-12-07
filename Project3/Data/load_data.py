@@ -20,6 +20,7 @@ def load_mri_data(base_path, batch_size=32, image_size=(128, 128)):
     """
     # Paths to train and test directories
     train_dir = os.path.join(base_path, 'Training')
+    print("yes")#Data/archive/Testing
     test_dir = os.path.join(base_path, 'Testing')
 
     print("Batch size: ", batch_size)
@@ -41,7 +42,7 @@ def load_mri_data(base_path, batch_size=32, image_size=(128, 128)):
     return total_dataset, labels_map
 
 
-def train_test_split(dataset, test_fraction=0.2, batch_size=32):
+def train_test_split(dataset, test_fraction=0.1, batch_size=32, validation_fraction=0.2):
     """
     Splits a torch.utils.data.Dataset into training and testing datasets.
     
@@ -52,24 +53,29 @@ def train_test_split(dataset, test_fraction=0.2, batch_size=32):
 
     Returns:
         train_loader (torch.utils.data.DataLoader): DataLoader for the training dataset.
+        validation_loader (torch.utils.data.DataLoader): DataLoader for the validation dataset.
         test_loader (torch.utils.data.DataLoader): DataLoader for the testing dataset.
     """
     # Calculate the sizes for training and testing datasets
     total_size = len(dataset)
     test_size = int(total_size * test_fraction)
-    train_size = total_size - test_size
+    validation_size = int(total_size * validation_fraction)
+    train_size = total_size - test_size - validation_size
 
     random_seed = 42  # Set random seed for reproducibilityrandom_seed = 42
     generator = torch.Generator().manual_seed(random_seed)
 
     # Randomly split the dataset
-    train_dataset, test_dataset = random_split(dataset, [train_size, test_size],generator=generator)
+    train_dataset,validation_set, test_dataset = random_split(dataset, [train_size,validation_size, test_size],generator=generator)
 
     # Create DataLoaders
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=False)
+    validation_loader = DataLoader(validation_set, batch_size=batch_size, shuffle=False)
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
-    return train_loader, test_loader
+    if validation_fraction == 0:
+        return train_loader, test_loader
+    return train_loader, validation_loader, test_loader
 
 
 def plot_batch(images, labels, labels_map, num_images=9):
@@ -101,7 +107,7 @@ def plot_batch(images, labels, labels_map, num_images=9):
 
 # Example usage
 if __name__ == "__main__":
-    base_path = "Project3/Data/archive"  # Adjust to your actual base path
+    base_path = "Data/archive"  # Adjust to your actual base path
     batch_size = 32
     image_size = (128, 128)
 
@@ -109,7 +115,8 @@ if __name__ == "__main__":
     total_dataset, labels_map = load_mri_data(base_path, batch_size=batch_size, image_size=image_size)
 
     # Split into training and testing datasets
-    train_set, test_set = train_test_split(total_dataset, test_fraction=0.2, batch_size=batch_size)
+    train_set, validation_set ,test_set = train_test_split(total_dataset, test_fraction=0.2, batch_size=batch_size)
+
 
     # Get a batch from the training set
     train_features, train_labels = next(iter(train_set))
