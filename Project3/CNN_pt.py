@@ -8,6 +8,8 @@ from torchvision.models import densenet121
 from Data.load_data import load_mri_data, train_test_split 
 from tqdm import tqdm
 
+
+
 # Define the DenseNet model
 class DenseNetCNN(nn.Module):
     def __init__(self, num_classes):

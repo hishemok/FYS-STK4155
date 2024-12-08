@@ -10,8 +10,9 @@ from Data.load_data import load_mri_data, train_test_split
 from tqdm import tqdm
 
 
+
 class CNN:
-    def __init__(self, train, validation, test, num_classes,model,labels_map):
+    def __init__(self, train, validation, test, num_classes,model,labels_map,**kwargs):
         """
         Parameters:
         Training dataset (torch.utils.data.Dataset): The training dataset
@@ -45,7 +46,7 @@ class CNN:
         elif model == 'EfficientNet':
             self.model = efficientnet_b0(pretrained = False,num_classes=num_classes).to(self.device)
         elif model == 'VisionTransformer':
-            self.model = vit_b_16(pretrained = False,num_classes=num_classes).to(self.device)
+            self.model = vit_b_16(pretrained = False,num_classes=num_classes, image_size=kwargs["image_size"]).to(self.device)
         elif model == 'Custom CNN':
             self.model = self.CustomCNN(num_classes=num_classes).to(self.device)
         else:
@@ -309,7 +310,10 @@ if __name__ == "__main__":
     for model_name in models:
         print(f"\nTraining {model_name} model...\n")
         print("initializing model...")
-        cnn_model = CNN(train_set, val_set, test_set, num_classes, model_name,labels_map)
+        if model_name == "VisionTransformer":
+            cnn_model = CNN(train_set, val_set, test_set, num_classes, model_name,labels_map,image_size=image_size[0])
+        else:
+            cnn_model = CNN(train_set, val_set, test_set, num_classes, model_name,labels_map)
         print("Training model...")
         cnn_model.train_model(epochs=epochs, learning_rate=learning_rate, optimizer="Adam", weight_decay=0)
         histories[model_name] = cnn_model.history
