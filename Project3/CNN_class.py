@@ -27,7 +27,6 @@ class CNN:
                 - Resnet
                 - EfficientNet
                 - VisionTransformer
-                - Custom CNN
         labels_map (dict): A dictionary mapping class indices to class names
         kwargs:
             - image_size (int): The size of the input images (default is 32)
@@ -37,50 +36,43 @@ class CNN:
         self.validation = validation if len(validation) > 0 else test
         self.test = test
         self.num_classes = num_classes
-        self.history = {'train_loss': [], 'val_loss': [], 'train_acc': [], 'val_acc': []}
+        self.history = {'train_loss': [], 'val_loss': [], 'train_acc': [], 'val_acc': [], 'r2': [], 'mse': []}
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.labels_map = labels_map
 
+
         if model == 'Densenet':
             self.model = densenet121(weights = False,num_classes=num_classes).to(self.device)
+            #Customize classifier for the number of classes in the dataset
+            self.model.classifier = nn.Linear(self.model.classifier.in_features, num_classes)
+
             self.model_name = 'Densenet'
         elif model == 'Resnet':
             self.model = resnet50(weights = False,num_classes=num_classes).to(self.device)
+            #Customize classifier for the number of classes in the dataset, resnet50 has fc layer
+            self.model.fc = nn.Linear(self.model.fc.in_features, num_classes)
+
             self.model_name = 'Resnet'
         elif model == 'EfficientNet':
             self.model = efficientnet_b0(weights = False,num_classes=num_classes).to(self.device)
+            #Customize classifier for the number of classes in the dataset
+            in_features = self.model.classifier[1].in_features
+            self.model.classifier = nn.Sequential(
+                nn.Dropout(p=0.2,inplace=True),
+                nn.Linear(in_features, num_classes)
+            )
+
             self.model_name = 'EfficientNet'
         elif model == 'VisionTransformer':
             self.model = vit_b_16(weights = False,num_classes=num_classes, image_size=kwargs["image_size"]).to(self.device)
+            self.model.heads.head = nn.Linear(self.model.heads.head.in_features, num_classes)
+
             self.model_name = 'VisionTransformer'
-        elif model == 'Custom CNN':
-            self.model = self.CustomCNN(num_classes=num_classes).to(self.device)
-            self.model_name = 'Custom CNN'
+
         else:
-            raise ValueError("Invalid model name. Choose from ['Densenet', 'Resnet', 'EfficientNet', 'VisionTransformer', 'Custom CNN']")
+            raise ValueError("Invalid model name. Choose from ['Densenet', 'Resnet', 'EfficientNet', 'VisionTransformer']")
         
-    def CustomCNN(self, num_classes):
-        # class CustomCNN(nn.Module):
-        #     def __init__(self, num_classes):
-        #         super(CustomCNN, self).__init__()
-        #         self.conv1 = nn.Conv2d(3, 32, 3, 1)
-        #         self.conv2 = nn.Conv2d(32, 64, 3, 1)
-        #         self.conv3 = nn.Conv2d(64, 128, 3, 1)
-        #         self.fc1 = nn.Linear(128 * 10 * 10, 128)
-        #         self.fc2 = nn.Linear(128, num_classes)
 
-        #     def forward(self, x):
-        #         x = F.relu(self.conv1(x))
-        #         x = F.relu(self.conv2(x))
-        #         x = F.relu(self.conv3(x))
-        #         x = F.max_pool2d(x, 2)
-        #         x = torch.flatten(x, 1)
-        #         x = F.relu(self.fc1(x))
-        #         x = self.fc2(x)
-        #         return F.log_softmax(x, dim=1)
-
-        # return CustomCNN(num_classes)
-        raise NotImplementedError("Custom CNN model is in the making, and not ready for use yet.")
     
     def get_optimizer(self, optimizer_name='Adam', learning_rate=0.001, weight_decay=0):
         """
@@ -121,7 +113,6 @@ class CNN:
         optimizer = kwargs.get('optimizer', 'Adam')
         weight_decay = kwargs.get('weight_decay', 0)
         use_scheduler = kwargs.get('use_scheduler', False)
-        return_mse_r2 = kwargs.get('return_mse_r2', False)
 
 
         criterion = nn.CrossEntropyLoss()
@@ -135,8 +126,6 @@ class CNN:
             verbose = kwargs.get('verbose', True)
 
             scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode=scheduler_mode, factor=factor, patience=patience, verbose=verbose)
-
-        r2_mse = []
 
         for epoch in range(epochs):
             self.model.train()
@@ -155,7 +144,7 @@ class CNN:
                 epoch_acc += torch.sum(preds == labels.data).item()
             
             if use_scheduler:
-                scheduler.step()
+                scheduler.step(metrics=loss)
 
             train_loss = epoch_loss / len(self.train.dataset)
             train_acc = epoch_acc / len(self.train.dataset)
@@ -168,45 +157,56 @@ class CNN:
             val_acc = val_results['accuracy']
             self.history['val_loss'].append(val_loss)
             self.history['val_acc'].append(val_acc)
-            r2_mse.append(self.r2_mse(self.validation))
+            r2, mse = self.r2_mse(self.validation)
+            self.history['r2'].append(r2)
+            self.history['mse'].append(mse)
 
             # Print epoch summary
             print(f"Epoch {epoch+1}/{epochs}")
             print(f"  Train Loss: {train_loss:.4f}, Train Accuracy: {train_acc:.4f}")
             print(f"  Val Loss: {val_loss:.4f}, Val Accuracy: {val_acc:.4f}")
+            print(f"  Val R²: {r2:.4f}, Val MSE: {mse:.4f}")
 
-        if return_mse_r2:
-            return r2_mse
+ 
         
     def plot_history(self,save = False,path = "Data/Results"):
         """
         Plots the training history of the model.
         """
         epochs = range(1, len(self.history['train_loss']) + 1)
-        plt.figure(figsize=(12, 5))
+        # plt.figure(figsize=(12, 5))
 
-        # Plot Loss
-        plt.subplot(1, 2, 1)
-        plt.plot(epochs, self.history['train_loss'], label='Train Loss')
-        plt.plot(epochs, self.history['val_loss'], label='Validation Loss')
-        plt.xlabel('Epochs')
-        plt.ylabel('Loss')
-        plt.legend()
+        fig, axs = plt.subplots(2,2, figsize=(12, 12))
 
-        # Plot Accuracy
-        plt.subplot(1, 2, 2)
-        plt.plot(epochs, self.history['train_acc'], label='Train Accuracy')
-        plt.plot(epochs, self.history['val_acc'], label='Validation Accuracy')
-        plt.xlabel('Epochs')
-        plt.ylabel('Accuracy')
-        plt.legend()
+        axs[0, 0].plot(epochs, self.history['train_loss'], label='Train Loss')
+        axs[0, 0].plot(epochs, self.history['val_loss'], label='Validation Loss')
+        # axs[0, 0].set_xlabel('Epochs')
+        axs[0, 0].set_ylabel('Loss')
+        axs[0, 0].legend()
+
+        axs[0, 1].plot(epochs, self.history['train_acc'], label='Train Accuracy')
+        axs[0, 1].plot(epochs, self.history['val_acc'], label='Validation Accuracy')
+        # axs[0, 1].set_xlabel('Epochs')
+        axs[0, 1].set_ylabel('Accuracy')
+        axs[0, 1].legend()
+
+
+        axs[1, 0].plot(epochs, self.history['r2'], label='Validation R²')
+        axs[1, 0].set_xlabel('Epochs')
+        axs[1, 0].set_ylabel('R²')
+        axs[1, 0].legend()
+
+        axs[1, 1].plot(epochs, self.history['mse'], label='Validation MSE')
+        axs[1, 1].set_xlabel('Epochs')
+        axs[1, 1].set_ylabel('MSE')
+        axs[1, 1].legend()
 
         plt.title(f"Training History for {self.model_name}")
 
         if save:
             path = path + f"/training_history_{self.model_name}.png"
             plt.savefig(path)
-        plt.show()
+        plt.show(block=False)
     
     def evaluate(self, dataset=None):
         """
@@ -218,8 +218,7 @@ class CNN:
         Returns:
             dict: A dictionary containing accuracy and loss.
         """
-        if dataset is None:
-            dataset = self.test  # Default to the test set
+        dataset = dataset if dataset is not None else self.test
 
         self.model.eval()  # Set the model to evaluation mode
         total_loss = 0.0
@@ -243,6 +242,8 @@ class CNN:
 
         return {"accuracy": accuracy, "loss": average_loss}
     
+
+
     def predict(self, inputs):
         """
         Makes predictions using the trained model for given inputs.
@@ -263,6 +264,10 @@ class CNN:
             _, predicted = torch.max(outputs, 1) 
         return predicted.cpu(),probabilities.cpu() #ensure its moved to cpu just in case its on gpu
 
+
+    
+
+
     def predict_xgb(self,**kwargs):
         """
         Predict using XGBoost model.
@@ -279,6 +284,8 @@ class CNN:
         max_depth = kwargs.get('max_depth', 6)
         n_estimators = kwargs.get('n_estimators', 100)
         learning_rate = kwargs.get('learning_rate', 0.1)
+        save = kwargs.get('save', False)
+        path = kwargs.get('path', "Data/Results/xgboost")
 
         def extract_features(dataset, model, device):
             model.eval()
@@ -298,12 +305,13 @@ class CNN:
         X_test, y_test = extract_features(self.test, cnn_model, device)
 
 
+
         xgb_model = xgb.XGBClassifier(
             max_depth=max_depth,
             n_estimators=n_estimators,
             learning_rate=learning_rate,
             objective='multi:softmax',
-            num_class=num_classes,
+            num_class=self.num_classes,
             use_label_encoder=False,
             eval_metric='mlogloss'
         )
@@ -311,10 +319,30 @@ class CNN:
 
         xgb_preds = xgb_model.predict(X_test)
 
-        self.plot_confusion_matrix(y_test, xgb_preds, labels_map.values())
 
-        self.classification_report(y_test, xgb_preds, labels_map.values())
+        r2, mse = self.r2_mse(y_test, xgb_preds)
+        
+        cm = confusion_matrix(y_test, xgb_preds,labels = self.labels_map)
+        class_names = list(self.labels_map.values())
+        sns.heatmap(cm,annot=True,fmt='d',cmap='Blues',xticklabels=class_names,yticklabels=class_names)
+        plt.xlabel('Predicted Labels')
+        plt.ylabel('True Labels')
+        plt.title(f'Confusion Matrix on testset from the XGBoost model with model {self.model_name}')
+        plt.show(block=False)
 
+        class_report = classification_report(y_test, xgb_preds, target_names=self.labels_map.values())
+
+        if save:
+            paths = path + f"/xgb_{self.model_name}.png"
+            plt.savefig(paths)
+            with open(f"{path}/xgb_classification_report_mod_{self.model_name}.txt", 'w') as f:
+                f.write(class_report)
+
+            np.save(f"{path}/xgb_r2.npy", r2)
+            np.save(f"{path}/xgb_mse.npy", mse)
+
+
+        
         return xgb_preds
 
     def save_model(self, path):
@@ -336,7 +364,7 @@ class CNN:
         self.model.load_state_dict(torch.load(path))
         self.model.to(self.device)
 
-    def plot_img(self, indexes =(0,4) ,prediction = False):
+    def plot_img(self, indexes =(0,4) ,prediction = False,save = False, path = "Data/Results"):
         """
         Params:
             indexes (tuple): Tuple of two integers representing the range of images to plot.
@@ -349,7 +377,7 @@ class CNN:
             self.predicted_labels,self.probabilities = self.predict(images) 
             print(self.predicted_labels,self.probabilities)
         
-        self.plot_batch(images, labels, self.labels_map, num_images)
+        self.plot_batch(images, labels, self.labels_map, num_images,save=save,path=path)
         
     
     def plot_batch(self,images, labels, labels_map, num_images,save = False, path = "Data/Results"):
@@ -393,7 +421,7 @@ class CNN:
             path += f"/sample_images_{self.model_name}.png"
             plt.savefig(path)
 
-        plt.show()
+        plt.show(block=False)
     
     def plot_confusion_matrix(self,dataset,save = False,path = "Data/Results"):
         """
@@ -419,9 +447,9 @@ class CNN:
         if save:
             path = path + f"/confusion_matrix_{self.model_name}.png"
             plt.savefig(path) 
-        plt.show()
+        plt.show(block=False)
     
-    def classification_report(self,dataset):
+    def classification_report(self,dataset,save = False,path = "Data/Results"):
         """
         Prints the classification report for the model on a given dataset.
 
@@ -436,8 +464,13 @@ class CNN:
             y_true.extend(labels.cpu().numpy())
             y_pred.extend(predicted.cpu().numpy())
         print(classification_report(y_true, y_pred, target_names=self.labels_map.values()))
+
+        if save:
+            path = path + f"/classification_report_{self.model_name}.txt"
+            with open(path, 'w') as f:
+                f.write(classification_report(y_true, y_pred, target_names=self.labels_map.values()))
     
-    def r2_mse(self, dataset,plot  = True):
+    def r2_mse(self, dataset):
         """
         Calculates R² and MSE for the model's predictions on a dataset.
 
@@ -445,7 +478,9 @@ class CNN:
             dataset (torch.utils.data.DataLoader): Dataset to evaluate on (default is test set).
 
         Returns:
-            dict: A dictionary containing R² and MSE.
+            float: R² value
+            float: Mean Squared Error (MSE)
+            
         """
         self.model.eval()
         y_true, y_pred = [], []
@@ -464,44 +499,15 @@ class CNN:
         mse = np.mean((y_true - y_pred) ** 2)
         r2 = 1 - (np.sum((y_true - y_pred) ** 2) / np.sum((y_true - np.mean(y_true)) ** 2))
 
-        return {"R²": r2, "MSE": mse}
-    
-
-    def plot_r2_mse(self, r2_mse_values):
-        """
-        Plots the R² and MSE values across epochs.
-
-        Params:
-            r2_mse_values (list): List of dictionaries containing R² and MSE values.
-        """
-        epochs = range(1, len(r2_mse_values) + 1)
-        r2_values = [value["R²"] for value in r2_mse_values]
-        mse_values = [value["MSE"] for value in r2_mse_values]
-
-        plt.figure(figsize=(12, 5))
-
-        # Plot R²
-        plt.subplot(1, 2, 1)
-        plt.plot(epochs, r2_values, label='R²')
-        plt.xlabel('Epochs')
-        plt.ylabel('R²')
-        plt.legend()
-
-        # Plot MSE
-        plt.subplot(1, 2, 2)
-        plt.plot(epochs, mse_values, label='MSE')
-        plt.xlabel('Epochs')
-        plt.ylabel('MSE')
-        plt.legend()
-
-        plt.title(f"R² and MSE for {self.model_name}")
-        plt.show()
+        return r2, mse
 
     def get_metrics_and_plots(self,**kwargs):
         """
         Get metrics and plots for the trained model.
         Params:
             kwargs:
+                -saving (bool): If True, save the plots to file (default is False).
+                -path (str): Path to save the plots (default is "Data/Results").
                 - confusion_matrix (bool): If True, plot the confusion matrix (default is True).
                 - classification_report (bool): If True, print the classification report (default is True).
                 - plot_history (bool): If True, plot the training history (default is True).
@@ -510,7 +516,8 @@ class CNN:
                     - indexes (tuple): Tuple of two integers representing the range of images to plot (default is (0, 4)).
                     - prediction (bool): If True, the model will make predictions on the images, and plot the predicted labels (default is True).
         """
-        r2_mse = kwargs.get('r2_mse', True)
+        saving = kwargs.get('saving', False)
+        path = kwargs.get('path', "Data/Results")
         confusion_matrix = kwargs.get('confusion_matrix', True)
         classification_report = kwargs.get('classification_report', True)
         plot_history = kwargs.get('plot_history', True) 
@@ -518,26 +525,22 @@ class CNN:
         indexes = kwargs.get('indexes', (0, 4))
         prediction = kwargs.get('prediction', True)    
 
-        if r2_mse:
-            print("Calculating R² and MSE...")
-            print(self.r2_mse(self.test))
-            self.plot_r2_mse(self.r2_mse(self.test))
 
         if confusion_matrix:
             print("Plotting confusion matrix...")
-            self.plot_confusion_matrix(self.test)
+            self.plot_confusion_matrix(self.test,save = saving,path = path)
         
         if classification_report:
             print("Printing classification report...")
-            self.classification_report(self.test)
+            self.classification_report(self.test,save = saving,path = path)
 
         if plot_history:
             print("Plotting training history...")
-            self.plot_history()
+            self.plot_history(save=saving,path=path)
         
         if plot_img:
             print("Plotting sample images...")
-            self.plot_img(indexes=indexes, prediction=prediction)
+            self.plot_img(indexes=indexes, prediction=prediction,save=saving,path=path)
 
 
 if __name__ == "__main__":
@@ -545,7 +548,7 @@ if __name__ == "__main__":
     num_classes = 4
     epochs = 2
     learning_rate = 0.001
-    batch_size = 32
+    batch_size = 64
     base_path = "Data/archive"
     image_size = (32, 32)
 
@@ -580,15 +583,10 @@ if __name__ == "__main__":
         cnn_model.train_model(
             epochs=epochs,
             learning_rate=learning_rate,
-            optimizer="Adam",
-            weight_decay=0.001,
-            use_scheduler=True,
-            scheduler_mode='min',
-            factor=0.1,
-            patience=5,
-            verbose=True
+            optimizer="Adam"
         )
-     
+    
+
         # Save the model# Save training history
         histories[model_name] = cnn_model.history
 
@@ -596,10 +594,7 @@ if __name__ == "__main__":
         print(f"Evaluating {model_name}...")
         cnn_model.get_metrics_and_plots(confusion_matrix=True, classification_report=True, plot_history=True, plot_img=True, indexes=(0, 4), prediction=True)
 
-        # Optionally, save the trained model
-        # save_path = f"{model_name}_model.pth"
-        # cnn_model.save_model(save_path)
-        # print(f"{model_name} model saved to {save_path}")
-
+        print(f"Predicting using XGBoost for {model_name}...")
+        cnn_model.predict_xgb()
 
     print("\nAll models trained and evaluated!")
